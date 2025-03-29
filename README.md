@@ -45,7 +45,11 @@ cd windows-Remote-Administration-Tool-Setup
 pip install -r requirements.txt
 
 ```
+# Run 
+```bash
+python run.py
 
+```
 ## Configure the bot:
 
 ```bash
