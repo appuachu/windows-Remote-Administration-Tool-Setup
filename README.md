@@ -45,7 +45,7 @@ cd windows-Remote-Administration-Tool-Setup
 pip install -r requirements.txt
 
 ```
-# Run 
+# Run:
 ```bash
 python run.py
 
