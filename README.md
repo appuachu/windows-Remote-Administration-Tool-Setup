@@ -20,7 +20,7 @@ This tool allows you to remotely control a Windows machine using Telegram comman
 📋 Task List - View running processes
 🔴 Shutdown - Shutdown the system
 ♻ Restart - Restart the system
-🔹 CMD Access - Execute commands directly
+CMD Access - Execute commands directly
 📸 Screen & File Access
 📸 Screenshot - Capture screen
 🎥 Screen Record - Record screen activity
