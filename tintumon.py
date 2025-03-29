@@ -4,28 +4,27 @@ import subprocess
 
 def update_main_py(bot_token, user_id):
     try:
-        with open("tintuon_main.py", "r", encoding="utf-8") as file:  # Fix: Use UTF-8 encoding
+        with open("tintuon_main.py", "r", encoding="utf-8") as file:
             content = file.read()
-
-        # Replace BOT_TOKEN and USER_ID
+        
         content = re.sub(r'BOT_TOKEN\s*=\s*".*?"', f'BOT_TOKEN = "{bot_token}"', content)
         content = re.sub(r'USER_ID\s*=\s*\d+', f'USER_ID = {user_id}', content)
-
-        with open("main.py", "w", encoding="utf-8") as file:  # Fix: Use UTF-8 encoding
+        
+        with open("tintuon_main.py", "w", encoding="utf-8") as file:
             file.write(content)
         return True
     except Exception as e:
-        print(f"❌ Error updating main.py: {e}")
+        print(f"❌ Error updating tintuon_main.py: {e}")
         return False
 
-def build_executable(icon_path):
+def build_executable(icon_path, name_app):  # Added name_app as parameter
     if not icon_path.endswith('.ico'):
         print("❌ Icon must be a .ico file.")
         return False
     if not os.path.exists(icon_path):
         print(f"❌ Icon file not found: {icon_path}")
         return False
-
+    
     command = [
         "pyinstaller",
         "--onefile",
@@ -44,7 +43,7 @@ def build_executable(icon_path):
         "--hidden-import=cryptography",
         "main.py"
     ]
-
+    
     print("\n🛠️ Building executable with PyInstaller...")
     try:
         subprocess.run(command, check=True)
@@ -61,15 +60,13 @@ def main():
     icon_path = input("Enter the path to your .ico file: ").strip()
     name_app = input("Enter the application name: ").strip()
 
-    # Update main.py (with UTF-8 encoding fix)
     if update_main_py(bot_token, user_id):
-        print("\n✅ main.py updated successfully!")
+        print("\n✅  successfully!")
     else:
-        print("\n❌ Failed to update main.py. Check if the file exists and is accessible.")
+        print("\n❌ Failed to update. Check if the file exists and is accessible.")
         return
 
-    # Build executable
-    build_executable(icon_path)
+    build_executable(icon_path, name_app)  # Pass name_app as argument
 
 if __name__ == "__main__":
     main()
