@@ -63,4 +63,4 @@ User ID (your Telegram ID)
 * Run the generated Tintumon.exe which is in the dist folder.
 * The bot will send a welcome message when active.
 
-# 🚀 Happy Ethical Hacking! 
+# 🚀 Happy Ethical Hackers! 
