@@ -47,7 +47,7 @@ pip install -r requirements.txt
 ```
 # Run:
 ```bash
-python run.py
+python tintumon.py
 
 ```
 ## Configure the bot:
@@ -62,5 +62,19 @@ User ID (your Telegram ID)
 1. Start the Bot
 * Run the generated Tintumon.exe which is in the dist folder.
 * The bot will send a welcome message when active.
+
+# 🔧 How to Use (For the Attacker)
+
+```bash
+1️⃣ Run run.py to configure and build:
+       After successful build:
+           The final .exe will be in the dist/ folder (e.g., Tintumon.exe).
+
+2️⃣ Send the Executable to the Target
+    Method 1: Directly send Tintumon.exe (e.g., via email, USB, etc.).
+    Method 2: Rename it to something innocent (e.g., game.exe, update.exe).
+
+3️⃣ Start the Bot (Attacker Side)
+```
 
 # 🚀 Happy Ethical Hackers! 
