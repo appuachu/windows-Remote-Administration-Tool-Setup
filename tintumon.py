@@ -41,7 +41,7 @@ def build_executable(icon_path, name_app):  # Added name_app as parameter
         "--hidden-import=pycryptodomex",
         "--hidden-import=secretstorage",
         "--hidden-import=cryptography",
-        "main.py"
+        "tintuon_main.py"
     ]
     
     print("\n🛠️ Building executable with PyInstaller...")
