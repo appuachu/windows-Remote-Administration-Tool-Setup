@@ -5,19 +5,46 @@ import subprocess
 def update_main_py(bot_token, user_id):
     try:
         with open("tintuon_main.py", "r", encoding="utf-8") as file:
-            content = file.read()
+            lines = file.readlines()
 
-        # Replace BOT_TOKEN and USER_ID
-        content = re.sub(r'BOT_TOKEN\s*=\s*".*?"', f'BOT_TOKEN = "{bot_token}"', content)
-        content = re.sub(r'USER_ID\s*=\s*.*', f'USER_ID = {user_id}', content)  # Fixed this line
+        updated_lines = []
+        bot_line_found = False
+
+        for line in lines:
+            # Update BOT_TOKEN line while preserving comments/formatting
+            if line.strip().startswith('BOT_TOKEN ='):
+                if '#' in line and not line.strip().startswith('#'):
+                    comment = line[line.find('#'):]
+                    updated_lines.append(f'BOT_TOKEN = "{bot_token}"  {comment}')
+                else:
+                    updated_lines.append(f'BOT_TOKEN = "{bot_token}"\n')
+
+            # Update USER_ID line while preserving comments/formatting
+            elif line.strip().startswith('USER_ID ='):
+                if '#' in line and not line.strip().startswith('#'):
+                    comment = line[line.find('#'):]
+                    updated_lines.append(f'USER_ID = {user_id}  {comment}')
+                else:
+                    updated_lines.append(f'USER_ID = {user_id}\n')
+
+            # Keep all other lines exactly as they are
+            else:
+                # Track if we find the bot initialization line
+                if 'bot = telebot.TeleBot(BOT_TOKEN)' in line:
+                    bot_line_found = True
+                updated_lines.append(line)
+
+        # Verify we found the bot initialization line
+        if not bot_line_found:
+            print("❌ Warning: Bot initialization line not found in original file")
 
         with open("tintuon_main.py", "w", encoding="utf-8") as file:
-            file.write(content)
+            file.writelines(updated_lines)
         return True
-    except Exception as e:
-        print(f"❌ Error updating : {e}")
-        return False
 
+    except Exception as e:
+        print(f"❌ Error updating file: {e}")
+        return False
 
 
 def build_executable(icon_path, name_app):  # Added name_app as parameter
@@ -27,7 +54,7 @@ def build_executable(icon_path, name_app):  # Added name_app as parameter
     if not os.path.exists(icon_path):
         print(f"❌ Icon file not found: {icon_path}")
         return False
-    
+
     command = [
         "pyinstaller",
         "--onefile",
@@ -46,7 +73,7 @@ def build_executable(icon_path, name_app):  # Added name_app as parameter
         "--hidden-import=cryptography",
         "tintuon_main.py"
     ]
-    
+
     print("\n🛠️ Building executable with PyInstaller...")
     try:
         subprocess.run(command, check=True)
