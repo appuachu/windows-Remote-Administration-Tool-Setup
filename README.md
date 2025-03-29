@@ -1,5 +1,5 @@
 # 🔹 Remote Administration Tool (RAT) via Telegram
-A powerful Python-based remote administration tool controlled via Telegram bot with 15+ features.
+A powerful remote administration tool controlled via Telegram bot with 15+ features.
 
 ## 📌 Overview
 This tool allows you to remotely control a Windows machine using Telegram commands. It includes 15+ powerful features for system monitoring, data extraction, and remote control.
