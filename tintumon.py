@@ -4,7 +4,7 @@ import subprocess
 
 def update_main_py(bot_token, user_id):
     try:
-        with open("main.py", "r", encoding="utf-8") as file:  # Fix: Use UTF-8 encoding
+        with open("tintuon_main.py", "r", encoding="utf-8") as file:  # Fix: Use UTF-8 encoding
             content = file.read()
 
         # Replace BOT_TOKEN and USER_ID
