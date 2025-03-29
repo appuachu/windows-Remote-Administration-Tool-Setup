@@ -1,4 +1,4 @@
-# 🔹 Remote Administration Tool (RAT) via Telegram
+# 🔹 Remote Administration Tool (RAT) for Windows via Telegram
 A powerful remote administration tool controlled via Telegram bot with 15+ features.
 
 ## 📌 Overview
