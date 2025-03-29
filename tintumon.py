@@ -11,7 +11,7 @@ def update_main_py(bot_token, user_id):
         bot_line_found = False
 
         for line in lines:
-            # Update BOT_TOKEN line while preserving comments/formatting
+            
             if line.strip().startswith('BOT_TOKEN ='):
                 if '#' in line and not line.strip().startswith('#'):
                     comment = line[line.find('#'):]
@@ -19,7 +19,7 @@ def update_main_py(bot_token, user_id):
                 else:
                     updated_lines.append(f'BOT_TOKEN = "{bot_token}"\n')
 
-            # Update USER_ID line while preserving comments/formatting
+          
             elif line.strip().startswith('USER_ID ='):
                 if '#' in line and not line.strip().startswith('#'):
                     comment = line[line.find('#'):]
@@ -27,14 +27,14 @@ def update_main_py(bot_token, user_id):
                 else:
                     updated_lines.append(f'USER_ID = {user_id}\n')
 
-            # Keep all other lines exactly as they are
+        
             else:
-                # Track if we find the bot initialization line
+            
                 if 'bot = telebot.TeleBot(BOT_TOKEN)' in line:
                     bot_line_found = True
                 updated_lines.append(line)
 
-        # Verify we found the bot initialization line
+ 
         if not bot_line_found:
             print("❌ Warning: Bot initialization line not found in original file")
 
@@ -47,7 +47,7 @@ def update_main_py(bot_token, user_id):
         return False
 
 
-def build_executable(icon_path, name_app):  # Added name_app as parameter
+def build_executable(icon_path, name_app):
     if not icon_path.endswith('.ico'):
         print("❌ Icon must be a .ico file.")
         return False
