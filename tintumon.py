@@ -6,16 +6,19 @@ def update_main_py(bot_token, user_id):
     try:
         with open("tintuon_main.py", "r", encoding="utf-8") as file:
             content = file.read()
-        
+
+        # Replace BOT_TOKEN and USER_ID
         content = re.sub(r'BOT_TOKEN\s*=\s*".*?"', f'BOT_TOKEN = "{bot_token}"', content)
-        content = re.sub(r'USER_ID\s*=\s*\d+', f'USER_ID = {user_id}', content)
-        
+        content = re.sub(r'USER_ID\s*=\s*.*', f'USER_ID = {user_id}', content)  # Fixed this line
+
         with open("tintuon_main.py", "w", encoding="utf-8") as file:
             file.write(content)
         return True
     except Exception as e:
-        print(f"❌ Error updating tintuon_main.py: {e}")
+        print(f"❌ Error updating : {e}")
         return False
+
+
 
 def build_executable(icon_path, name_app):  # Added name_app as parameter
     if not icon_path.endswith('.ico'):
